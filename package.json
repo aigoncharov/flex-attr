@@ -1,0 +1,24 @@
+{
+  "name": "flex-layout",
+  "version": "0.0.1",
+  "description": "Power of flexbox with easy to use attribute selectors",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keenondrums/flex-layout.git"
+  },
+  "keywords": [
+    "flex",
+    "flexbox",
+    "layout"
+  ],
+  "author": "andrey.goncharov aka keenondrums (frantic1993@gmail.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/keenondrums/flex-layout/issues"
+  },
+  "homepage": "https://github.com/keenondrums/flex-layout#readme"
+}
