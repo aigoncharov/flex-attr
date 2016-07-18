@@ -480,8 +480,8 @@ $layout-breakpoint-lg:     1920px !default;
 
 @media print and (max-width: $layout-breakpoint-xs - 1) {
   // Xtra-SMALL  SCREEN
-  .hide-print-xs, .hide-print {
-    &:not(.show-xs):not(.show) {
+  [hide-print-xs], [hide-print] {
+    &:not([show-xs]):not([show]) {
       display: none !important;
     }
   }
@@ -495,12 +495,12 @@ $layout-breakpoint-lg:     1920px !default;
 }
 
 @media print and (min-width: $layout-breakpoint-xs) and (max-width: $layout-breakpoint-sm - 1) {
-  .hide-print, .hide-print-gt-xs {
-    &:not(.show-gt-xs):not(.show-sm):not(.show) {
+  [hide-print], [hide-print-gt-xs] {
+    &:not([show-gt-xs]):not([show-sm]):not([show]) {
       display: none !important;
     }
   }
-  .hide-print-sm:not(.show-print-gt-xs):not(.show-print-sm):not(.show-print) {
+  [hide-print-sm]:not([show-print-gt-xs]):not([show-print-sm]):not([show-print]) {
     display: none !important;
   }
 
@@ -515,12 +515,12 @@ $layout-breakpoint-lg:     1920px !default;
 
 @media print and (min-width: $layout-breakpoint-sm) and (max-width: $layout-breakpoint-md - 1) {
   // MEDIUM SCREEN
-  .hide-print, .hide-print-gt-xs, .hide-print-gt-sm {
-    &:not(.show-print-gt-xs):not(.show-print-gt-sm):not(.show-print-md):not(.show-print) {
+  [hide-print], [hide-print-gt-xs], [hide-print-gt-sm] {
+    &:not([show-print-gt-xs]):not([show-print-gt-sm]):not([show-print-md]):not([show-print]) {
       display: none !important;
     }
   }
-  .hide-print-md:not(.show-print-md):not(.show-print-gt-sm):not(.show-print-gt-xs):not(.show-print) {
+  [hide-print-md]:not([show-print-md]):not([show-print-gt-sm]):not([show-print-gt-xs]):not([show-print]) {
     display: none !important;
   }
   @include layouts_for_breakpoint(md);
@@ -533,12 +533,12 @@ $layout-breakpoint-lg:     1920px !default;
 
 @media print and (min-width: $layout-breakpoint-md) and (max-width: $layout-breakpoint-lg - 1) {
   // LARGE SCREEN
-  .hide-print,.hide-print-gt-xs, .hide-print-gt-sm, .hide-print-gt-md {
-    &:not(.show-print-gt-xs):not(.show-print-gt-sm):not(.show-print-gt-md):not(.show-print-lg):not(.show-print) {
+  [hide-print],[hide-print-gt-xs], [hide-print-gt-sm], [hide-print-gt-md] {
+    &:not([show-print-gt-xs]):not([show-print-gt-sm]):not([show-print-gt-md]):not([show-print-lg]):not([show-print]) {
       display: none !important;
     }
   }
-  .hide-print-lg:not(.show-print-lg):not(.show-print-gt-md):not(.show-print-gt-sm):not(.show-print-gt-xs):not(.show-print) {
+  [hide-print-lg]:not([show-print-lg]):not([show-print-gt-md]):not([show-print-gt-sm]):not([show-print-gt-xs]):not([show-print]) {
     display: none !important;
   }
 
@@ -550,12 +550,12 @@ $layout-breakpoint-lg:     1920px !default;
   @include layouts_for_breakpoint(xl);
 
   // BIGGER THAN LARGE SCREEN
-  .hide-print, .hide-print-gt-xs, .hide-print-gt-sm, .hide-print-gt-md, .hide-print-gt-lg {
-    &:not(.show-print-gt-xs):not(.show-print-gt-sm):not(.show-print-gt-md):not(.show-print-gt-lg):not(.show-print-xl):not(.show-print) {
+  [hide-print], [hide-print-gt-xs], [hide-print-gt-sm], [hide-print-gt-md], [hide-print-gt-lg] {
+    &:not([show-print-gt-xs]):not([show-print-gt-sm]):not([show-print-gt-md]):not([show-print-gt-lg]):not([show-print-xl]):not([show-print]) {
       display: none !important;
     }
   }
-  .hide-print-xl:not(.show-print-xl):not(.show-print-gt-lg):not(.show-print-gt-md):not(.show-print-gt-sm):not(.show-print-gt-xs):not(.show-print) {
+  [hide-print-xl]:not([show-print-xl]):not([show-print-gt-lg]):not([show-print-gt-md]):not([show-print-gt-sm]):not([show-print-gt-xs]):not([show-print]) {
     display: none !important;
   }
 
@@ -569,100 +569,3 @@ $layout-breakpoint-lg:     1920px !default;
 
 @include layouts_for_breakpoint();
 @include layout-wrap-fill();
-
-
-/**
- * `hide-gt-sm show-gt-lg` should hide from 600px to 1200px
- * `show-md hide-gt-sm` should show from 0px to 960px and hide at >960px
- * `hide-gt-md show-gt-sm` should show everywhere (show overrides hide)`
- *
- *  hide means hide everywhere
- *  Sizes:
- *         $layout-breakpoint-xs:     600px !default;
- *         $layout-breakpoint-sm:     960px !default;
- *         $layout-breakpoint-md:     1280px !default;
- *         $layout-breakpoint-lg:     1920px !default;
- */
-
-
-@media (max-width: $layout-breakpoint-xs - 1) {
-  // Xtra-SMALL  SCREEN
-  .hide-xs, .hide {
-    &:not(.show-xs):not(.show) {
-      display: none;
-    }
-  }
-  @include layouts_for_breakpoint(xs);
-}
-
-@media (min-width: $layout-breakpoint-xs) {
-  // BIGGER THAN Xtra-SMALL SCREEN
-  @include layouts_for_breakpoint(gt-xs);
-
-}
-
-@media (min-width: $layout-breakpoint-xs) and (max-width: $layout-breakpoint-sm - 1) {
-  .hide, .hide-gt-xs {
-    &:not(.show-gt-xs):not(.show-sm):not(.show) {
-      display: none;
-    }
-  }
-  .hide-sm:not(.show-gt-xs):not(.show-sm):not(.show) {
-    display: none;
-  }
-
-  @include layouts_for_breakpoint(sm);
-}
-
-@media (min-width: $layout-breakpoint-sm) {
-  // BIGGER THAN SMALL SCREEN
-  @include layouts_for_breakpoint(gt-sm);
-
-}
-
-@media (min-width: $layout-breakpoint-sm) and (max-width: $layout-breakpoint-md - 1) {
-  // MEDIUM SCREEN
-  .hide, .hide-gt-xs, .hide-gt-sm {
-    &:not(.show-gt-xs):not(.show-gt-sm):not(.show-md):not(.show) {
-      display: none;
-    }
-  }
-  .hide-md:not(.show-md):not(.show-gt-sm):not(.show-gt-xs):not(.show) {
-    display: none;
-  }
-  @include layouts_for_breakpoint(md);
-}
-
-@media (min-width: $layout-breakpoint-md) {
-  // BIGGER THAN MEDIUM SCREEN
-  @include layouts_for_breakpoint(gt-md);
-}
-
-@media (min-width: $layout-breakpoint-md) and (max-width: $layout-breakpoint-lg - 1) {
-  // LARGE SCREEN
-  .hide,.hide-gt-xs, .hide-gt-sm, .hide-gt-md {
-    &:not(.show-gt-xs):not(.show-gt-sm):not(.show-gt-md):not(.show-lg):not(.show) {
-      display: none;
-    }
-  }
-  .hide-lg:not(.show-lg):not(.show-gt-md):not(.show-gt-sm):not(.show-gt-xs):not(.show) {
-    display: none;
-  }
-
-  @include layouts_for_breakpoint(lg);
-}
-
-@media (min-width: $layout-breakpoint-lg) {
-  @include layouts_for_breakpoint(gt-lg);
-  @include layouts_for_breakpoint(xl);
-
-  // BIGGER THAN LARGE SCREEN
-  .hide, .hide-gt-xs, .hide-gt-sm, .hide-gt-md, .hide-gt-lg {
-    &:not(.show-gt-xs):not(.show-gt-sm):not(.show-gt-md):not(.show-gt-lg):not(.show-xl):not(.show) {
-      display: none;
-    }
-  }
-  .hide-xl:not(.show-xl):not(.show-gt-lg):not(.show-gt-md):not(.show-gt-sm):not(.show-gt-xs):not(.show) {
-    display: none;
-  }
-}
