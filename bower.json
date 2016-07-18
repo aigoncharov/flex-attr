@@ -2,7 +2,7 @@
   "name": "flex-layout",
   "homepage": "https://github.com/keenondrums/flex-layout",
   "authors": [
-    "andrey.goncharov frantic1993@gmail.com"
+    "andrey.goncharov aka keenondrums (frantic1993@gmail.com)"
   ],
   "description": "Power of flexbox with easy to use attribute selectors",
   "main": [
@@ -10,7 +10,9 @@
     "layout.scss"
   ],
   "keywords": [
-    "flex"
+    "flex",
+    "flexbox",
+    "layout"
   ],
   "license": "MIT"
 }
