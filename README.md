@@ -1,6 +1,6 @@
-# flex-layout
+# flex-attr
 
-Flex Layout is a set of CSS rules, which brings the power of flexbox into your project without you writing a single line of CSS yourself.
+Flex Atrr is a set of CSS rules, which brings the power of flexbox into your project without you writing a single line of CSS yourself.
 It's basically a fork of [Angular Material](https://github.com/angular/material) [without some attributes, which were found not useful, and couple features added.](#comparison-to-angular-material).
 For a comprehensive guide check [original Angular Material documentaion](https://material.angularjs.org/latest/layout/introduction)
 
@@ -19,7 +19,7 @@ By default the preprocessor will generate CSS for the following screen size post
 - md: 1280px
 - lg: 1920px
 
-You can easily override it by providing your list in your sass in a format of:
+You can easily override it by providing your list in your sass in a format of '<variable>: postfix screen-size':
 ```
 $layout-breakpoints: xs 600px, sm 960px, md 1280px, lg 1920px !default;
 ```
