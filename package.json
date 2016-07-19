@@ -1,5 +1,5 @@
 {
-  "name": "flex-layout",
+  "name": "flex-attr",
   "version": "0.0.1",
   "description": "Power of flexbox with easy to use attribute selectors",
   "main": "index.js",
