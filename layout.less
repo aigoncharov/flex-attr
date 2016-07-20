@@ -1,0 +1,624 @@
+/*
+*
+*  Responsive attributes
+*
+*  References:
+*  1) https://scotch.io/tutorials/a-visual-guide-to-css3-flexbox-properties#flex
+*  2) https://css-tricks.com/almanac/properties/f/flex/
+*  3) https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+*  4) https://github.com/philipwalton/flexbugs#3-min-height-on-a-flex-container-wont-apply-to-its-flex-items
+*  5) http://godban.com.ua/projects/flexgrid
+*
+*/
+
+// Layout
+// ------------------------------
+
+@layout-breakpoints: xs 600px, sm 960px, md 1280px, lg 1920px;
+
+.create-rule(@attr, @prop, @sizes, @iterator, @val, @i: 1) when not (@sizes = '') and (@i <= length(@sizes)) {
+    @size: extract(@sizes, @i);
+    @selector: ~"@{attr}-@{size}";
+
+    [@{selector}="@{iterator}"] {
+            @{prop}: @val;
+    }
+
+    .create-rule(@attr, @prop, @sizes, @iterator, @val, (@i + 1));
+}
+
+.create-rule(@attr, @prop, @sizes, @iterator, @val) when (@sizes = '') {
+
+    [@{attr}="@{iterator}"] {
+            @{prop}: @val;
+    }
+}
+
+.flex-order-for-name(@sizes: '') {
+
+    [flex-order] when (@sizes = '') {
+        order: 0;
+    }
+
+    .create-order(@iterator:-20) when (@iterator <= 20) {
+        .create-rule(flex-order, order, @sizes, @iterator, @iterator);
+        .create-order(@iterator + 1);
+    }
+
+    .create-order();
+}
+
+.offset-for-name(@sizes: '') {
+
+    .create-order(@iterator:0) when (@iterator <= 19) {
+        @val: @iterator * 5;
+        .create-rule(flex-offset, margin-left, @sizes, @iterator, ~"@{val}%");
+        .create-order(@iterator + 1);
+    }
+
+    .create-order();
+
+    .create-rule(flex-offset, margin-left, @sizes, 33, calc(100% / 3));
+    .create-rule(flex-offset, margin-left, @sizes, 66, calc(200% / 3));
+}
+
+.layout-for-name(@name: '') when (@name = '') {
+    [layout], [layout="column"], [layout="row"] {
+        box-sizing: border-box;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+    }
+    [layout="column"] {
+        flex-direction: column;
+    }
+    [layout="row"] {
+        flex-direction: row;
+    }
+}
+
+.layout-for-name(@name: '') when not (@name = '') {
+    @selector: ~"layout-@{name}";
+    [@{selector}], [@{selector}="column"], [@{selector}="row"] {
+        box-sizing: border-box;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+    }
+    [@{selector}="column"] {
+        flex-direction: column;
+    }
+    [@{selector}="row"] {
+        flex-direction: row;
+    }
+}
+
+.generate-flex-properties(@name, @flex-name) {
+    [@{flex-name}] {
+        flex: 1;
+        box-sizing: border-box;
+    }
+    // === flex: 1 1 0%;
+
+    @selector: ~"@{flex-name}-grow";
+    [@{selector}] {
+        flex: 1 1 100%;
+        box-sizing: border-box;
+    }
+    @selector: ~"@{flex-name}-initial";
+    [@{selector}] {
+        flex: 0 1 auto;
+        box-sizing: border-box;
+    }
+    @selector: ~"@{flex-name}-auto";
+    [@{selector}] {
+        flex: 1 1 auto;
+        box-sizing: border-box;
+    }
+    @selector: ~"@{flex-name}-none";
+    [@{selector}] {
+        flex: 0 0 auto;
+        box-sizing: border-box;
+    }
+
+    // (1-20) * 5 = 0-100%
+    .flex-properties-value(@i: 0) when (@i <= 20) {
+
+        @val: @i *5;
+        @value: ~"@{val}%";
+
+        [@{flex-name}="@{val}"] {
+            flex: 1 1 @value;
+            max-width: @value;
+            max-height: 100%;
+            box-sizing: border-box;
+        }
+
+        [layout="row"] > [@{flex-name}="@{val}"] {
+            flex: 1 1 @value;
+            max-width: @value;
+            max-height: 100%;
+            box-sizing: border-box;
+        }
+
+        [layout="column"] > [@{flex-name}="@{val}"] {
+            flex: 1 1 @value;
+            max-width: 100%;
+            max-height: @value;
+            box-sizing: border-box;
+        }
+
+        @selector: ~"layout@{name}";
+        [@{selector}="row"] > [@{flex-name}="@{val}"] {
+            flex: 1 1 @value;
+            max-width: @value;
+            max-height: 100%;
+            box-sizing: border-box;
+        }
+
+        [@{selector}="column"] > [@{flex-name}="@{val}"] {
+            flex: 1 1 @value;
+            max-width: 100%;
+            max-height: @value;
+            box-sizing: border-box;
+        }
+
+        .flex-properties-value(@i + 1);
+    }
+
+    .flex-properties-value();
+
+    [layout="row"] {
+        > [@{flex-name}="33"], > [@{flex-name}="33"] {
+            flex: 1 1 33.33%;
+            max-width: 33.33%;
+            max-height: 100%;
+            box-sizing: border-box;
+        }
+        > [@{flex-name}="66"], > [@{flex-name}="66"] {
+            flex: 1 1 66.66%;
+            max-width: 66.66%;
+            max-height: 100%;
+            box-sizing: border-box;
+        }
+    }
+    [layout="column"] {
+        > [@{flex-name}="33"], > [@{flex-name}="33"] {
+            flex: 1 1 33.33%;
+            max-width: 100%;
+            max-height: 33.33%;
+            box-sizing: border-box;
+        }
+        > [@{flex-name}="66"], > [@{flex-name}="66"] {
+            flex: 1 1 66.66%;
+            max-width: 100%;
+            max-height: 66.66%;
+            box-sizing: border-box;
+        }
+    }
+    @selector: ~"layout@{name}";
+    [@{selector}="row"] {
+        > [@{flex-name}="33"], > [@{flex-name}="33"] {
+            flex: 1 1 33.33%;
+            max-width: 33.33%;
+            max-height: 100%;
+            box-sizing: border-box;
+        }
+        > [@{flex-name}="66"], > [@{flex-name}="66"] {
+            flex: 1 1 66.66%;
+            max-width: 66.66%;
+            max-height: 100%;
+            box-sizing: border-box;
+        }
+    }
+    [@{selector}="column"] {
+        > [@{flex-name}="33"], > [@{flex-name}="33"] {
+            flex: 1 1 33.33%;
+            max-width: 100%;
+            max-height: 33.33%;
+            box-sizing: border-box;
+        }
+        > [@{flex-name}="66"], > [@{flex-name}="66"] {
+            flex: 1 1 66.66%;
+            max-width: 100%;
+            max-height: 66.66%;
+            box-sizing: border-box;
+        }
+    }
+}
+
+.flex-properties-for-name(@name: '') when not (@name = '') {
+    .generate-flex-properties(~"-@{name}", ~"flex-@{name}");
+}
+
+.flex-properties-for-name(@name: '') when (@name = '') {
+    .generate-flex-properties(@name, flex);
+}
+
+.generate-layout-align-properties(@name) {
+
+    // Alignment attributes for layout containers' children
+    // Arrange on the Main Axis
+    // center, start, end, space-between, space-around
+    // flex-start is the default for justify-content
+    // ------------------------------
+
+    [@{name}],
+    [@{name}="start stretch"] // defaults
+    {
+        justify-content: flex-start;
+        align-content: stretch;
+        align-items: stretch;
+    }
+    // Main Axis Center
+    [@{name}="start"],
+    [@{name}="start start"],
+    [@{name}="start center"],
+    [@{name}="start end"],
+    [@{name}="start stretch"] {
+        justify-content: flex-start;
+    }
+
+    // Main Axis Center
+    [@{name}="center"],
+    [@{name}="center start"],
+    [@{name}="center center"],
+    [@{name}="center end"],
+    [@{name}="center stretch"] {
+        justify-content: center;
+    }
+
+    // Main Axis End
+    [@{name}="end"], //stretch
+    [@{name}="end center"],
+    [@{name}="end start"],
+    [@{name}="end end"],
+    [@{name}="end stretch"] {
+        justify-content: flex-end;
+    }
+
+    // Main Axis Space Around
+    [@{name}="space-around"], //stretch
+    [@{name}="space-around center"],
+    [@{name}="space-around start"],
+    [@{name}="space-around end"],
+    [@{name}="space-around stretch"] {
+        justify-content: space-around;
+    }
+
+    // Main Axis Space Between
+    [@{name}="space-between"], //stretch
+    [@{name}="space-between center"],
+    [@{name}="space-between start"],
+    [@{name}="space-between end"],
+    [@{name}="space-between stretch"] {
+        justify-content: space-between;
+    }
+
+    // Arrange on the Cross Axis
+    // center, start, end
+    // stretch is the default for align-items
+    // ------------------------------
+
+    // Cross Axis Start
+    [@{name}="start start"],
+    [@{name}="center start"],
+    [@{name}="end start"],
+    [@{name}="space-between start"],
+    [@{name}="space-around start"] {
+        align-items: flex-start;
+        align-content: flex-start;
+    }
+
+    // Cross Axis Center
+    [@{name}="start center"],
+    [@{name}="center center"],
+    [@{name}="end center"],
+    [@{name}="space-between center"],
+    [@{name}="space-around center"] {
+        align-items: center;
+        align-content: center;
+        max-width: 100%;
+    }
+
+    // Cross Axis Center IE overflow fix
+    [@{name}="start center"] > *,
+    [@{name}="center center"] > *,
+    [@{name}="end center"] > *,
+    [@{name}="space-between center"] > *,
+    [@{name}="space-around center"] > * {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    // Cross Axis End
+    [@{name}="start end"],
+    [@{name}="center end"],
+    [@{name}="end end"],
+    [@{name}="space-between end"],
+    [@{name}="space-around end"] {
+        align-items: flex-end;
+        align-content: flex-end;
+    }
+
+    // Cross Axis  stretch
+    [@{name}="start stretch"],
+    [@{name}="center stretch"],
+    [@{name}="end stretch"],
+    [@{name}="space-between stretch"],
+    [@{name}="space-around stretch"] {
+        align-items: stretch;
+        align-content: stretch;
+    }
+}
+
+.layout-align-for-name(@suffix: '') when (@suffix = '') {
+    .generate-layout-align-properties(layout-align);
+}
+
+.layout-align-for-name(@suffix: '') when not (@suffix = '') {
+    .generate-layout-align-properties(~"layout-align-@{suffix}");
+}
+
+.layout-wrap-fill {
+
+    [layout-wrap] {
+        flex-wrap: wrap;
+    }
+
+    [layout-nowrap] {
+        flex-wrap: nowrap;
+    }
+
+    [layout-fill] {
+        margin: 0;
+        width: 100%;
+        min-height: 100%;
+        height: 100%;
+    }
+}
+
+.layouts_for_breakpoint(@name: '') {
+    .flex-order-for-name(@name);
+    .offset-for-name(@name);
+    .layout-align-for-name(@name);
+
+    .flex-properties-for-name(@name);
+    .layout-for-name(@name);
+}
+
+// Generate flex attribute selectors for the set of the screen breakpoints
+
+.layout-for-breakpoint-list(@i: 1) when (@i <= length(@layout-breakpoints)) and (@i = 1) {
+    @suffix: extract(extract(@layout-breakpoints, @i), 1);
+    @screen-size: extract(extract(@layout-breakpoints, @i), 2);
+
+    @media (max-width: @screen-size) {
+        .layouts_for_breakpoint(@suffix);
+    }
+
+    @media (min-width: (@screen-size + 1)) {
+        .layouts_for_breakpoint(~"gt-@{suffix}");
+    }
+
+    .layout-for-breakpoint-list(@i + 1);
+}
+
+.layout-for-breakpoint-list(@i: 1) when (@i <= length(@layout-breakpoints)) and not (@i = 1) {
+    @suffix: extract(extract(@layout-breakpoints, @i), 1);
+    @screen-size: extract(extract(@layout-breakpoints, @i), 2);
+    @prev-screen-size: extract(extract(@layout-breakpoints, (@i - 1)), 2);
+
+    @media (max-width: @screen-size) and (min-width: (@prev-screen-size + 1)) {
+        .layouts_for_breakpoint(@suffix);
+    }
+
+    @media (min-width: (@screen-size + 1)) {
+        .layouts_for_breakpoint(~"gt-@{suffix}");
+    }
+
+    .layout-for-breakpoint-list(@i + 1);
+}
+
+.layout-for-breakpoint-list();
+
+/* Generate hide and show attribute selectors for the set of the screen breakpoints
+*  Rules without 'gt' postfix override ones with the postfix
+*  'Show' rules override 'hide' rules
+*  Example:
+*  hide show-md - hidden everywhere but md screens
+*  hide-gt-xs show-gt-sm hide-gt-lg - visible on xs screens, hidden on sm screens, visible on md and lg screens, hidden on screens greater than lg
+*  hide show-gt-xs hide-lg - hidden on xs screens, visible on sm, md screens, hidden on lg screens, visible on screens greater than lg
+*/
+
+.visibility-for-breakpoint(@i) when (@i = 1) {
+    @suffix: extract(extract(@layout-breakpoints, @i), 1);
+    @screen-size: extract(extract(@layout-breakpoints, @i), 2);
+
+    @media (max-width: @screen-size) {
+        @selector-show: ~"show-@{suffix}";
+        @selector-hide: ~"hide-@{suffix}";
+        [hide]:not([@{selector-show}]), [@{selector-hide}]:not([@{selector-show}]) {
+            display: none;
+        }
+    }
+}
+
+.visibility-for-breakpoint(@i) when not (@i = 1) {
+    @suffix: extract(extract(@layout-breakpoints, @i), 1);
+    @screen-size: extract(extract(@layout-breakpoints, @i), 2);
+    @screen-size-prev: extract(extract(@layout-breakpoints, (@i - 1)), 2);
+
+    @media (max-width: @screen-size) and (min-width: (@screen-size-prev + 1)) {
+        @selector-show: ~"show-@{suffix}";
+        @selector-hide: ~"hide-@{suffix}";
+
+        [@{selector-hide}]:not([@{selector-show}]) {
+            display: none;
+        }
+
+        .create-hide-selector(@postfix: '', @j: 1) when (@j < (@i - 1)) {
+            @not-show-gt-suffix: extract(extract(@layout-breakpoints, @j), 1);
+            .create-hide-selector(~"@{postfix}:not([show-gt-@{not-show-gt-suffix}])", (@j + 1));
+        }
+        .create-hide-selector(@postfix: '', @j: 1) when (@j = (@i - 1)) {
+            @not-show-gt-suffix: extract(extract(@layout-breakpoints, @j), 1);
+            @not-show-gt: ~"@{postfix}:not([show-gt-@{not-show-gt-suffix}])";
+
+            [hide]:not([@{selector-show}]) @{not-show-gt} {
+                display: none;
+            }
+        }
+        .create-hide-selector();
+
+        .create-hide-gt-selector(@j: 1) when (@j < @i) {
+            @hide-gt-suffix: extract(extract(@layout-breakpoints, @j), 1);
+            @selector-hide-gt: ~"hide-gt-@{hide-gt-suffix}";
+
+            .create-hide-selector(@postfix: '', @j: 1) when (@j < (@i - 1)) {
+                @not-show-gt-suffix: extract(extract(@layout-breakpoints, @j), 1);
+                .create-hide-selector(~"@{postfix}:not([show-gt-@{not-show-gt-suffix}])", (@j + 1));
+            }
+            .create-hide-selector(@postfix: '', @j: 1) when (@j = (@i - 1)) {
+                @not-show-gt-suffix: extract(extract(@layout-breakpoints, @j), 1);
+                @not-show-gt: ~"@{postfix}:not([show-gt-@{not-show-gt-suffix}])";
+
+                [@{selector-hide-gt}]:not([@{selector-show}]) @{not-show-gt} {
+                    display: none;
+                }
+            }
+
+            .create-hide-selector('', @j);
+            .create-hide-gt-selector(@j + 1);
+        }
+
+        .create-hide-gt-selector();
+    }
+}
+
+.visibility-for-breakpoint(@i) when (@i = length(@layout-breakpoints)) {
+    @suffix: extract(extract(@layout-breakpoints, @i), 1);
+    @screen-size: extract(extract(@layout-breakpoints, @i), 2);
+    @screen-size-prev: extract(extract(@layout-breakpoints, (@i - 1)), 2);
+
+    @media (min-width: (@screen-size + 1)) {
+
+        .create-hide-selector(@postfix: '', @j: 1) when (@j < (@i - 1)) {
+            @not-show-gt-suffix: extract(extract(@layout-breakpoints, @j), 1);
+            .create-hide-selector(~"@{postfix}:not([show-gt-@{not-show-gt-suffix}])", (@j + 1));
+        }
+        .create-hide-selector(@postfix: '', @j: 1) when (@j = (@i - 1)) {
+            @not-show-gt-suffix: extract(extract(@layout-breakpoints, @j), 1);
+            @not-show-gt: ~"@{postfix}:not([show-gt-@{not-show-gt-suffix}])";
+
+            [hide] @{not-show-gt} {
+                display: none;
+            }
+        }
+        .create-hide-selector();
+
+        .create-hide-gt-selector(@j: 1) when (@j < @i) {
+            @hide-gt-suffix: extract(extract(@layout-breakpoints, @j), 1);
+            @selector-hide-gt: ~"hide-gt-@{hide-gt-suffix}";
+
+            .create-hide-selector(@postfix: '', @j: 1) when (@j < (@i - 1)) {
+                @not-show-gt-suffix: extract(extract(@layout-breakpoints, @j), 1);
+                .create-hide-selector(~"@{postfix}:not([show-gt-@{not-show-gt-suffix}])", (@j + 1));
+            }
+            .create-hide-selector(@postfix: '', @j: 1) when (@j = (@i - 1)) {
+                @not-show-gt-suffix: extract(extract(@layout-breakpoints, @j), 1);
+                @not-show-gt: ~"@{postfix}:not([show-gt-@{not-show-gt-suffix}])";
+
+                [@{selector-hide-gt}] @{not-show-gt} {
+                    display: none;
+                }
+            }
+
+            .create-hide-selector('', @j);
+            .create-hide-gt-selector(@j + 1);
+        }
+
+        .create-hide-gt-selector();
+    }
+}
+
+.generate-visibility-breakpoints(@i: 1) when (@i <= length(@layout-breakpoints)) {
+    .visibility-for-breakpoint(@i);
+    .generate-visibility-breakpoints(@i + 1);
+}
+
+.generate-visibility-breakpoints();
+
+/*
+*
+*  Adaptive Print settings with Breakpoint Aliases\
+*
+*/
+
+// General printing Rules resets to default Layout API
+@media print {
+
+    // Override layout API settings to use defaults when printing.
+    .layouts_for_breakpoint();
+    .layouts_for_breakpoint(print);
+    .layout-wrap-fill();
+
+    // NOTE: the PRINT layouts will be the same as the default (no-aliase) layouts
+    .layout-for-breakpoint-list();
+
+    // In favor of code simplicity and due to rare use of print special styling it was decided to drop print attributes with gt postfix
+    // hide-print-{screen-size} and show-print-{screen-size} are available and they override regular show and hide
+    .generate-visibility-breakpoints(@i: 1) when (@i <= @layout-breakpoints) and (@i = 1) {
+        @suffix: extract(extract(@layout-breakpoints, @i), 1);
+        @screen-size: extract(extract(@layout-breakpoints, @i), 2);
+
+        @media (max-width: @screen-size) {
+            @selector-show: ~"show-print-@{suffix}";
+            @selector-hide: ~"hide-print-@{suffix}";
+
+            [hide-print]:not([@{selector-show}]), [@{selector-hide}]:not([@{selector-show}]) {
+                display: none !important;
+            }
+        }
+    }
+
+    .generate-visibility-breakpoints(@i: 1) when (@i <= @layout-breakpoints) and not (@i = 1) {
+        @suffix: extract(extract(@layout-breakpoints, @i), 1);
+        @screen-size: extract(extract(@layout-breakpoints, @i), 2);
+        @screen-size-prev: extract(extract(@layout-breakpoints, (@i - 1)), 2);
+
+        @media (max-width: @screen-size) and (min-width: (@screen-size-prev + 1)) {
+            @selector-show: ~"show-print-@{suffix}";
+            @selector-hide: ~"hide-print-@{suffix}";
+            [@{selector-hide}]:not([@{selector-show}]), [hide-print]:not([@{selector-show}]) {
+                display: none !important;
+            }
+        }
+    }
+
+    .generate-visibility-breakpoints(@i: 1) when (@i <= @layout-breakpoints) and (@i = length(@layout-breakpoints)) {
+        @suffix: extract(extract(@layout-breakpoints, @i), 1);
+        @screen-size: extract(extract(@layout-breakpoints, @i), 2);
+        @screen-size-prev: extract(extract(@layout-breakpoints, (@i - 1)), 2);
+
+        @media (min-width: (@screen-size-prev + 1)) {
+            [hide-print] {
+                display: none !important;
+            }
+        }
+    }
+
+    .generate-visibility-breakpoints();
+}
+
+/*
+ *  Apply Mixins to create Layout/Flexbox styles
+ *
+ */
+
+.layouts_for_breakpoint();
+.layout-wrap-fill();
