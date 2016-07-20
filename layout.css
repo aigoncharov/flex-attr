@@ -10,7 +10,7 @@
 *  5) http://godban.com.ua/projects/flexgrid
 *
 */
-@media (max-width: 599px) {
+@media (max-width: 600px) {
   [flex-order-xs="-20"] {
     order: -20; }
 
@@ -285,10 +285,10 @@
   [flex-xs] {
     flex: 1;
     box-sizing: border-box; } }
-@media screen \0 and (max-width: 599px) {
+@media screen \0 and (max-width: 600px) {
   [flex-xs] {
     flex: 1 1 0%; } }
-@media (max-width: 599px) {
+@media (max-width: 600px) {
   [flex-xs-grow] {
     flex: 1 1 100%;
     box-sizing: border-box; }
@@ -992,7 +992,7 @@
 
   [layout-xs="row"] {
     flex-direction: row; } }
-@media (min-width: 600px) {
+@media (min-width: 601px) {
   [flex-order-gt-xs="-20"] {
     order: -20; }
 
@@ -1267,10 +1267,10 @@
   [flex-gt-xs] {
     flex: 1;
     box-sizing: border-box; } }
-@media screen \0 and (min-width: 600px) {
+@media screen \0 and (min-width: 601px) {
   [flex-gt-xs] {
     flex: 1 1 0%; } }
-@media (min-width: 600px) {
+@media (min-width: 601px) {
   [flex-gt-xs-grow] {
     flex: 1 1 100%;
     box-sizing: border-box; }
@@ -1974,7 +1974,7 @@
 
   [layout-gt-xs="row"] {
     flex-direction: row; } }
-@media (max-width: 959px) and (min-width: 600px) {
+@media (max-width: 960px) and (min-width: 601px) {
   [flex-order-sm="-20"] {
     order: -20; }
 
@@ -2249,10 +2249,10 @@
   [flex-sm] {
     flex: 1;
     box-sizing: border-box; } }
-@media screen \0 and (max-width: 959px) and (min-width: 600px) {
+@media screen \0 and (max-width: 960px) and (min-width: 601px) {
   [flex-sm] {
     flex: 1 1 0%; } }
-@media (max-width: 959px) and (min-width: 600px) {
+@media (max-width: 960px) and (min-width: 601px) {
   [flex-sm-grow] {
     flex: 1 1 100%;
     box-sizing: border-box; }
@@ -2956,7 +2956,7 @@
 
   [layout-sm="row"] {
     flex-direction: row; } }
-@media (min-width: 960px) {
+@media (min-width: 961px) {
   [flex-order-gt-sm="-20"] {
     order: -20; }
 
@@ -3231,10 +3231,10 @@
   [flex-gt-sm] {
     flex: 1;
     box-sizing: border-box; } }
-@media screen \0 and (min-width: 960px) {
+@media screen \0 and (min-width: 961px) {
   [flex-gt-sm] {
     flex: 1 1 0%; } }
-@media (min-width: 960px) {
+@media (min-width: 961px) {
   [flex-gt-sm-grow] {
     flex: 1 1 100%;
     box-sizing: border-box; }
@@ -3938,7 +3938,7 @@
 
   [layout-gt-sm="row"] {
     flex-direction: row; } }
-@media (max-width: 1279px) and (min-width: 960px) {
+@media (max-width: 1280px) and (min-width: 961px) {
   [flex-order-md="-20"] {
     order: -20; }
 
@@ -4213,10 +4213,10 @@
   [flex-md] {
     flex: 1;
     box-sizing: border-box; } }
-@media screen \0 and (max-width: 1279px) and (min-width: 960px) {
+@media screen \0 and (max-width: 1280px) and (min-width: 961px) {
   [flex-md] {
     flex: 1 1 0%; } }
-@media (max-width: 1279px) and (min-width: 960px) {
+@media (max-width: 1280px) and (min-width: 961px) {
   [flex-md-grow] {
     flex: 1 1 100%;
     box-sizing: border-box; }
@@ -4920,7 +4920,7 @@
 
   [layout-md="row"] {
     flex-direction: row; } }
-@media (min-width: 1280px) {
+@media (min-width: 1281px) {
   [flex-order-gt-md="-20"] {
     order: -20; }
 
@@ -5195,10 +5195,10 @@
   [flex-gt-md] {
     flex: 1;
     box-sizing: border-box; } }
-@media screen \0 and (min-width: 1280px) {
+@media screen \0 and (min-width: 1281px) {
   [flex-gt-md] {
     flex: 1 1 0%; } }
-@media (min-width: 1280px) {
+@media (min-width: 1281px) {
   [flex-gt-md-grow] {
     flex: 1 1 100%;
     box-sizing: border-box; }
@@ -5902,7 +5902,7 @@
 
   [layout-gt-md="row"] {
     flex-direction: row; } }
-@media (max-width: 1919px) and (min-width: 1280px) {
+@media (max-width: 1920px) and (min-width: 1281px) {
   [flex-order-lg="-20"] {
     order: -20; }
 
@@ -6177,10 +6177,10 @@
   [flex-lg] {
     flex: 1;
     box-sizing: border-box; } }
-@media screen \0 and (max-width: 1919px) and (min-width: 1280px) {
+@media screen \0 and (max-width: 1920px) and (min-width: 1281px) {
   [flex-lg] {
     flex: 1 1 0%; } }
-@media (max-width: 1919px) and (min-width: 1280px) {
+@media (max-width: 1920px) and (min-width: 1281px) {
   [flex-lg-grow] {
     flex: 1 1 100%;
     box-sizing: border-box; }
@@ -6884,7 +6884,7 @@
 
   [layout-lg="row"] {
     flex-direction: row; } }
-@media (min-width: 1920px) {
+@media (min-width: 1921px) {
   [flex-order-gt-lg="-20"] {
     order: -20; }
 
@@ -7159,10 +7159,10 @@
   [flex-gt-lg] {
     flex: 1;
     box-sizing: border-box; } }
-@media screen \0 and (min-width: 1920px) {
+@media screen \0 and (min-width: 1921px) {
   [flex-gt-lg] {
     flex: 1 1 0%; } }
-@media (min-width: 1920px) {
+@media (min-width: 1921px) {
   [flex-gt-lg-grow] {
     flex: 1 1 100%;
     box-sizing: border-box; }
@@ -7877,7 +7877,7 @@
 @media (max-width: 600px) {
   [hide]:not([show-xs]), [hide-xs]:not([show-xs]) {
     display: none; } }
-@media (max-width: 960px) and (min-width: 600px) {
+@media (max-width: 960px) and (min-width: 601px) {
   [hide-sm]:not([show-sm]) {
     display: none; }
 
@@ -7886,7 +7886,7 @@
 
   [hide-gt-xs]:not([show-sm]):not([show-gt-xs]) {
     display: none; } }
-@media (max-width: 1280px) and (min-width: 960px) {
+@media (max-width: 1280px) and (min-width: 961px) {
   [hide-md]:not([show-md]) {
     display: none; }
 
@@ -7898,7 +7898,7 @@
 
   [hide-gt-sm]:not([show-md]):not([show-gt-sm]) {
     display: none; } }
-@media (max-width: 1920px) and (min-width: 1280px) {
+@media (max-width: 1920px) and (min-width: 1281px) {
   [hide-lg]:not([show-lg]) {
     display: none; }
 
@@ -7913,7 +7913,7 @@
 
   [hide-gt-md]:not([show-lg]):not([show-gt-md]) {
     display: none; } }
-@media (min-width: 1280px) {
+@media (min-width: 1921px) {
   [hide]:not([show-gt-xs]:not([show-gt-sm]):not([show-gt-md]):not([show-gt-lg])) {
     display: none; }
 
@@ -9906,7 +9906,7 @@
     width: 100%;
     min-height: 100%;
     height: 100%; } }
-@media print and (max-width: 599px) {
+@media print and (max-width: 600px) {
   [flex-order-xs="-20"] {
     order: -20; }
 
@@ -10885,7 +10885,7 @@
 
   [layout-xs="row"] {
     flex-direction: row; } }
-@media print and (min-width: 600px) {
+@media print and (min-width: 601px) {
   [flex-order-gt-xs="-20"] {
     order: -20; }
 
@@ -11864,7 +11864,7 @@
 
   [layout-gt-xs="row"] {
     flex-direction: row; } }
-@media print and (max-width: 959px) and (min-width: 600px) {
+@media print and (max-width: 960px) and (min-width: 601px) {
   [flex-order-sm="-20"] {
     order: -20; }
 
@@ -12843,7 +12843,7 @@
 
   [layout-sm="row"] {
     flex-direction: row; } }
-@media print and (min-width: 960px) {
+@media print and (min-width: 961px) {
   [flex-order-gt-sm="-20"] {
     order: -20; }
 
@@ -13822,7 +13822,7 @@
 
   [layout-gt-sm="row"] {
     flex-direction: row; } }
-@media print and (max-width: 1279px) and (min-width: 960px) {
+@media print and (max-width: 1280px) and (min-width: 961px) {
   [flex-order-md="-20"] {
     order: -20; }
 
@@ -14801,7 +14801,7 @@
 
   [layout-md="row"] {
     flex-direction: row; } }
-@media print and (min-width: 1280px) {
+@media print and (min-width: 1281px) {
   [flex-order-gt-md="-20"] {
     order: -20; }
 
@@ -15780,7 +15780,7 @@
 
   [layout-gt-md="row"] {
     flex-direction: row; } }
-@media print and (max-width: 1919px) and (min-width: 1280px) {
+@media print and (max-width: 1920px) and (min-width: 1281px) {
   [flex-order-lg="-20"] {
     order: -20; }
 
@@ -16759,7 +16759,7 @@
 
   [layout-lg="row"] {
     flex-direction: row; } }
-@media print and (min-width: 1920px) {
+@media print and (min-width: 1921px) {
   [flex-order-gt-lg="-20"] {
     order: -20; }
 
@@ -17741,16 +17741,16 @@
 @media print and (max-width: 600px) {
   [hide-print]:not([show-print-xs]), [hide-print-xs]:not([show-print-xs]) {
     display: none !important; } }
-@media print and (max-width: 960px) and (min-width: 600px) {
+@media print and (max-width: 960px) and (min-width: 601px) {
   [hide-print-sm]:not([show-print-sm]), [hide-print]:not([show-print-sm]) {
     display: none !important; } }
-@media print and (max-width: 1280px) and (min-width: 960px) {
+@media print and (max-width: 1280px) and (min-width: 961px) {
   [hide-print-md]:not([show-print-md]), [hide-print]:not([show-print-md]) {
     display: none !important; } }
-@media print and (max-width: 1920px) and (min-width: 1280px) {
+@media print and (max-width: 1920px) and (min-width: 1281px) {
   [hide-print-lg]:not([show-print-lg]), [hide-print]:not([show-print-lg]) {
     display: none !important; } }
-@media print and (min-width: 1280px) {
+@media print and (min-width: 1921px) {
   [hide-print] {
     display: none !important; } }
 /*

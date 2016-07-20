@@ -1,11 +1,13 @@
 # flex-attr
 
 Flex Atrr is a set of CSS rules, which brings the power of flexbox into your project without you writing a single line of CSS yourself.
+Works with LESS, SASS and vanilla CSS.
 It's basically a fork of [Angular Material](https://github.com/angular/material) [without some attributes, which were found not useful, and couple features added.](#comparison-to-angular-material).
 For a comprehensive guide check [original Angular Material documentaion](https://material.angularjs.org/latest/layout/introduction)
 
 ## Comparison to Angular Material
 
+- Added port for LESS
 - [Added ability to generate CSS for a custom list of screen breakpoints](#custom-breakpoints)
 - [Changed show and hide attributes override rules](#visibility-attributes-override-rules)
 - Deprecated layout-padding attribute
@@ -21,7 +23,11 @@ By default the preprocessor will generate CSS for the following screen size post
 
 You can easily override it by providing your list in your sass in a format of '<variable>: postfix screen-size':
 ```
-$layout-breakpoints: xs 600px, sm 960px, md 1280px, lg 1920px !default;
+$layout-breakpoints: xxs 480px, xs 600px, sm 960px, md 1280px, lg 1920px;
+```
+The same is valid for less:
+```
+@layout-breakpoints: xxs 480px, xs 600px, sm 960px, md 1280px, lg 1920px;
 ```
 
 ## Visibility attributes override rules
