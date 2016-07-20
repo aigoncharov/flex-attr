@@ -4,7 +4,7 @@
   "authors": [
     "andrey.goncharov aka keenondrums (frantic1993@gmail.com)"
   ],
-  "description": "Power of flexbox with easy to use attribute selectors",
+  "description": "Power of flexbox with easy to use attribute selectors for LESS, SASS and vanilla CSS",
   "main": [
     "layout.css",
     "layout.scss"
@@ -12,7 +12,9 @@
   "keywords": [
     "flex",
     "flexbox",
-    "layout"
+    "layout",
+    "attribute",
+    "grid"
   ],
   "license": "MIT"
 }
