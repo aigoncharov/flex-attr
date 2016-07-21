@@ -5,6 +5,17 @@ Works with LESS, SASS and vanilla CSS.
 It's basically a fork of [Angular Material](https://github.com/angular/material) [without some attributes, which were found not useful, and couple features added.](#comparison-to-angular-material).
 For a comprehensive guide check [original Angular Material documentaion](https://material.angularjs.org/latest/layout/introduction)
 
+## Install
+
+Bower
+```
+bower install --save flex-attr
+```
+NPM
+```
+npm install --save flex-attr
+```
+
 ## Comparison to Angular Material
 
 - Added port for LESS
@@ -21,7 +32,7 @@ By default the preprocessor will generate CSS for the following screen size post
 - md: 1280px
 - lg: 1920px
 
-You can easily override it by providing your list in your sass in a format of '<variable>: postfix screen-size':
+You can easily override it by providing your list in your sass in a format of '<variable>: postfix screen-size' (in order to make this work adjust your build script to pick up .less or .scss file instead of .css):
 ```
 $layout-breakpoints: xxs 480px, xs 600px, sm 960px, md 1280px, lg 1920px;
 ```
