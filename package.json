@@ -1,6 +1,6 @@
 {
   "name": "flex-attr",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "description": "Power of flexbox with easy to use attribute selectors for LESS, SASS and vanilla CSS",
   "main": "index.js",
   "scripts": {
