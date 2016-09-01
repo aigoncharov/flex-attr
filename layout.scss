@@ -451,7 +451,14 @@ $layout-breakpoints: xs 600px, sm 960px, md 1280px, lg 1920px !default;
     }
 }
 
+/*
+ *  Apply Mixins to create Layout/Flexbox styles
+ *
+ */
+
+@include layouts_for_breakpoint(();
 @include layout-for-breakpoint-list();
+@include layout-wrap-fill();
 
 /* Generate hide and show attribute selectors for the set of the screen breakpoints
 *  Rules without 'gt' postfix override ones with the postfix
@@ -579,11 +586,3 @@ $layout-breakpoints: xs 600px, sm 960px, md 1280px, lg 1920px !default;
         }
     }
 }
-
-/*
- *  Apply Mixins to create Layout/Flexbox styles
- *
- */
-
-@include layouts_for_breakpoint();
-@include layout-wrap-fill();

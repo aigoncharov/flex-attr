@@ -424,7 +424,13 @@
     .layout-for-breakpoint-list(@i + 1);
 }
 
+/*
+ *  Apply Mixins to create Layout/Flexbox styles
+ *
+ */
+.layouts_for_breakpoint();
 .layout-for-breakpoint-list();
+.layout-wrap-fill();
 
 /* Generate hide and show attribute selectors for the set of the screen breakpoints
 *  Rules without 'gt' postfix override ones with the postfix
@@ -614,11 +620,3 @@
 
     .generate-visibility-breakpoints();
 }
-
-/*
- *  Apply Mixins to create Layout/Flexbox styles
- *
- */
-
-.layouts_for_breakpoint();
-.layout-wrap-fill();
