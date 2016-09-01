@@ -22,5 +22,13 @@
   "bugs": {
     "url": "https://github.com/keenondrums/flex-layout/issues"
   },
-  "homepage": "https://github.com/keenondrums/flex-layout#readme"
+  "homepage": "https://github.com/keenondrums/flex-layout#readme",
+  "devDependencies": {
+    "autoprefixer": "^6.4.0",
+    "cssnano": "^3.7.4",
+    "gulp": "^3.9.1",
+    "gulp-less": "^3.1.0",
+    "gulp-postcss": "^6.1.1",
+    "gulp-sourcemaps": "^1.6.0"
+  }
 }
