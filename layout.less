@@ -98,29 +98,31 @@
 }
 
 .generate-flex-properties(@name, @flex-name) {
-    [@{flex-name}] {
+    @layout-selector: ~"layout@{name}";
+
+    [@{flex-name}], [layout="row"] > [@{flex-name}], [layout="column"] > [@{flex-name}], [@{layout-selector}="row"] > [@{flex-name}], [@{layout-selector}="column"] > [@{flex-name}] {
         flex: 1;
         box-sizing: border-box;
     }
     // === flex: 1 1 0%;
 
     @selector: ~"@{flex-name}-grow";
-    [@{selector}] {
+    [@{selector}], [layout="row"] > [@{selector}], [layout="column"] > [@{selector}], [@{layout-selector}="row"] > [@{selector}], [@{layout-selector}="column"] > [@{selector}] {
         flex: 1 1 100%;
         box-sizing: border-box;
     }
     @selector: ~"@{flex-name}-initial";
-    [@{selector}] {
+    [@{selector}], [layout="row"] > [@{selector}], [layout="column"] > [@{selector}], [@{layout-selector}="row"] > [@{selector}], [@{layout-selector}="column"] > [@{selector}] {
         flex: 0 1 auto;
         box-sizing: border-box;
     }
     @selector: ~"@{flex-name}-auto";
-    [@{selector}] {
+    [@{selector}], [layout="row"] > [@{selector}], [layout="column"] > [@{selector}], [@{layout-selector}="row"] > [@{selector}], [@{layout-selector}="column"] > [@{selector}] {
         flex: 1 1 auto;
         box-sizing: border-box;
     }
     @selector: ~"@{flex-name}-none";
-    [@{selector}] {
+    [@{selector}], [layout="row"] > [@{selector}], [layout="column"] > [@{selector}], [@{layout-selector}="row"] > [@{selector}], [@{layout-selector}="column"] > [@{selector}] {
         flex: 0 0 auto;
         box-sizing: border-box;
     }
@@ -152,15 +154,14 @@
             box-sizing: border-box;
         }
 
-        @selector: ~"layout@{name}";
-        [@{selector}="row"] > [@{flex-name}="@{val}"] {
+        [@{layout-selector}="row"] > [@{flex-name}="@{val}"] {
             flex: 1 1 @value;
             max-width: @value;
             max-height: 100%;
             box-sizing: border-box;
         }
 
-        [@{selector}="column"] > [@{flex-name}="@{val}"] {
+        [@{layout-selector}="column"] > [@{flex-name}="@{val}"] {
             flex: 1 1 @value;
             max-width: 100%;
             max-height: @value;
